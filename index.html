@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0f3d3a">
+<link rel="manifest" href="manifest.json">
+<!-- iOS PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="여행AI비서">
+<link rel="apple-touch-icon" href="icon-192.png">
+<!-- Android -->
+<meta name="mobile-web-app-capable" content="yes">
 <title>여행 AI 비서</title>
 <style>
 :root{
@@ -622,6 +630,15 @@ document.querySelectorAll('.tabbar button').forEach(b=>{
     window.scrollTo({top:0,behavior:'smooth'});
   };
 });
+</script>
+<script>
+/* PWA — Service Worker 등록 */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .catch(() => {}); // 로컬 file:// 환경에선 무시
+  });
+}
 </script>
 </body>
 </html>
